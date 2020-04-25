@@ -1,9 +1,9 @@
 # IMOK
 **Hack Pelo Futuro** hackaton project by:
 
-*Benício Januário\n
-Carolina Quiterio\n
-Felipe Corerato\n
-Guilherme Trevisan\n
-Marcelo Carone\n
+*Benício Januário &
+Carolina Quiterio &
+Felipe Corerato &
+Guilherme Trevisan &
+Marcelo Carone &
 Rafael Pak*
