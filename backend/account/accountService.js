@@ -1,8 +1,29 @@
+const firebase = require('firebase')
+require('firebase/firestore')
+
 let accountService = class {
-    getAccountById(UUID) {
-        console.log(`Account with ${UUID} uuid`);
+    constructor() {
+        this.db = firebase.firestore();
     }
-    
+
+    getAccountById(UUID) {  // these are some validations, please ignore
+        
+        if (UUID == 'beni') {
+            return {
+                body: 'salve quebrada',
+                err: {}
+            }
+        }
+
+        return {
+            body: '',
+            err: {
+                sc: 404,
+                desc: 'Couldn\'t find such user in Cloud Firestore.'
+            }
+        };
+    }
+
     getAccountByEmail(email) {
         console.log(`Account with ${email} email`);
     }
@@ -16,18 +37,10 @@ let accountService = class {
         console.log(nickname, email, classification, avatar, age);
     }
     
-    updateAccount(UUID, nickname, email, avatar, age, classification) {
+    updateAccountById(UUID, nickname, email, avatar, age, classification) {
         console.log("Updated account" + UUID + "with following data:\n");
         console.log(nickname, email, classification, avatar, age);
     }
-    
-    updateAccountAvatarById(UUID, avatar) {
-        console(`Updated ${UUID} avatar to ${avatar}`);
-    }
-    
-    updateAccountClassification(UUID, classification) {
-        console(`Updated ${UUID} classification to ${classification}`);
-    } 
 }
     
 

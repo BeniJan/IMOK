@@ -1,4 +1,5 @@
-const Firebase = require('firebase');
+const firebase = require('firebase');
+require("firebase/firestore");
 
 const firebaseConfig = class {
     constructor(apiKey) {
@@ -15,7 +16,7 @@ const firebaseConfig = class {
 
 const startFirebase = (apiKey) => {
     let config = new firebaseConfig(apiKey);
-    Firebase.initializeApp(config)
+    firebase.initializeApp(config)
 }
 
 module.exports = startFirebase;
