@@ -32,3 +32,5 @@ router.put("/accounts/:UUID", ({body}, res) => {
         body.classification
     );
 });
+
+module.exports = router;
