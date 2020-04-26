@@ -1,0 +1,22 @@
+{
+  "name": "imok",
+  "version": "1.0.0",
+  "description": "Hack Pelo Futuro hackaton project",
+  "main": "main.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BeniJan/IMOK.git"
+  },
+  "author": "Benicio Januario",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BeniJan/IMOK/issues"
+  },
+  "homepage": "https://github.com/BeniJan/IMOK#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
