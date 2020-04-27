@@ -9,6 +9,8 @@ let accountService = class {
     getAccountById = (UUID) => this.db.collection('accounts').doc(UUID).get();
 
     getAccountByEmail = (email) => this.db.collection('accounts').where('email', '==', email).get();
+
+    getAccountByNickname = (nickname) => this.db.collection('accounts').where('nickname', '==', nickname).get();
     
     deleteAccountById = (UUID) => this.db.collection('accounts').doc(UUID).delete();
     
