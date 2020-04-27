@@ -7,6 +7,8 @@ let accountService = class {
     }
 
     getAccountById = (UUID) => this.db.collection('accounts').doc(UUID).get();
+
+    getAccountByEmail = (email) => this.db.collection('accounts').where('email', '==', email).get();
     
     deleteAccountById = (UUID) => this.db.collection('accounts').doc(UUID).delete();
     
