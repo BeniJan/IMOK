@@ -12,7 +12,26 @@ router.get("/accounts/:UUID", (req, res) => {
             res.status(404).send({errorMessage: 'Couldn\'t find such users in firestore.'});
         }
         res.status(200).send(user.data());
-    }).catch(err => res.status(500).send({errorMessage: 'Failed to fetch user info duo following issue: ' + e}));
+    }).catch(err => res.status(500).send({errorMessage: 'Failed to fetch user info duo following issue: ' + err}));
+});
+
+router.get("/accounts", (req, res) => {
+    let getReq;
+    if (req.query.email !== undefined) {
+        getReq = accountService.getAccountByEmail(req.query.email);
+    } else if (req.query.nickname !== undefined) {
+        getReq = accountService.getAccountByNickname(req.query.nickname);
+    } else {
+        res.status(400).send({errorMessage: 'No query found for email or nickname. Please provide one of them.'})
+    }
+
+    getReq.then(snapshot => {
+        if (snapshot.empty) {
+            res.status(404).send({errorMessage: 'Couldn\'t find such users in firestore.'});
+        }
+        snapshot.forEach(user => res.status(200).send(user.data()))
+    })
+    .catch(err => res.status(500).send({errorMessage: 'Failed to fetch user info duo following issue: ' + err}));
 });
 
 router.delete("/accounts/:UUID", (req, res) => {
