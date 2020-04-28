@@ -22,7 +22,9 @@ let accountService = class {
         }
     }
     
-    updateAccountById = (UUID, {nickname, email, avatar, age}) => this.db.collection('accounts').doc(UUID).set({ nickname, email, avatar, age })
+    updateAccountById = (UUID, {nickname, email, avatar, age}) => this.db.collection('accounts').doc(UUID).set({
+        nickname, email, avatar, age
+    })
 
     partiallyUpdateAccountById = (UUID, reqBody) => this.db.collection('accounts').doc(UUID).set(reqBody, {merge: true})
 }

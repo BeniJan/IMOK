@@ -1,10 +1,14 @@
 {
   "name": "imok",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.16.2"
+  },
   "description": "Hack Pelo Futuro hackaton project",
   "main": "main.js",
   "scripts": {
-    "test": "test"
+    "start": "node main.js",
+    "test": "there are no tests for a hackaton project, I'm sorry..."
   },
   "repository": {
     "type": "git",
