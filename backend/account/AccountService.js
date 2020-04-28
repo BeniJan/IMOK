@@ -6,13 +6,13 @@ let accountService = class {
         this.db = firebase.firestore();
     }
 
-    getAccountById = (UUID) => this.db.collection('accounts').doc(UUID).get();
+    getAccountById = (UID) => this.db.collection('accounts').doc(UID).get();
 
     getAccountByEmail = (email) => this.db.collection('accounts').where('email', '==', email).get();
 
     getAccountByNickname = (nickname) => this.db.collection('accounts').where('nickname', '==', nickname).get();
     
-    deleteAccountById = (UUID) => this.db.collection('accounts').doc(UUID).delete();
+    deleteAccountById = (UID) => this.db.collection('accounts').doc(UID).delete();
     
     createAccount = (nickname, email, avatar, age) => {
         let accountUID = this.db.collection('accounts').doc().id;
