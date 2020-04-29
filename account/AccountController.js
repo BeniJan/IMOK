@@ -57,6 +57,22 @@ router.post("/accounts", (req, res) => {
     }));
 });
 
+router.post("/accounts/:UID/block", (req, res) => {
+    accountService.blockUser(req.params.UID)
+    .then(result => res.status(204).send())
+    .catch(err => res.status(500).send({
+        errorMessage:'Failed to block account due following issue: ' + err
+    }));
+});
+
+router.post("/accounts/:UID/unblock", (req, res) => {
+    accountService.unblockUser(req.params.UID)
+    .then(result => res.status(204).send())
+    .catch(err => res.status(500).send({
+        errorMessage:'Failed to unblock account due following issue: ' + err
+    }));
+});
+
 router.put("/accounts/:UID", (req, res) => {
     accountService.updateAccountById(req.params.UID, req.body)
     .then(result => res.status(204).send())
