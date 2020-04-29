@@ -2,17 +2,17 @@ const express = require('express');
 const router = new express.Router();
 
 const bodyParser = require('body-parser')
-const accountService = require('./AccountRepository');
+const accountService = require('./AccountService');
 
-router.get("/accounts/:UUID", (req, res) => {
-    let getReq = accountService.getAccountById(req.params.UUID);
-
-    getReq.then(user => {
+router.get("/accounts/:UID", (req, res) => {
+    accountService.getAccountById(req.params.UID).then(user => {
         if (user.data() === undefined) {
             res.status(404).send({errorMessage: 'Couldn\'t find such users in firestore.'});
         }
         res.status(200).send(user.data());
-    }).catch(err => res.status(500).send({errorMessage: 'Failed to fetch user info duo following issue: ' + err}));
+    }).catch(err => res.status(500).send({
+        errorMessage: 'Failed to fetch user info duo following issue: ' + err
+    }));
 });
 
 router.get("/accounts", (req, res) => {
@@ -34,33 +34,37 @@ router.get("/accounts", (req, res) => {
     .catch(err => res.status(500).send({errorMessage: 'Failed to fetch user info duo following issue: ' + err}));
 });
 
-router.delete("/accounts/:UUID", (req, res) => {
-    let deletionReq = accountService.deleteAccountById(req.params.UUID);
-    
-    deletionReq.then(user => {
-        res.status(204).send({message:"User successfully deleted."});
-    }).catch(err => res.status(500).send({errorMessage:'Failed to delete user account due following issue: ' + err}));
+router.delete("/accounts/:UID", (req, res) => {
+    accountService.deleteAccountById(req.params.UID)
+    .then(user => {res.status(204).send();})
+    .catch(err => res.status(500).send({
+        errorMessage:'Failed to delete user account due following issue: ' + err
+    }));
 });
 
 router.post("/accounts", (req, res) => {
     let {nickname, email, avatar, age} = req.body;
-    let creationReq = accountService.createAccount(nickname, email, avatar, age);
-
-    creationReq.accountCreationPromise.then(result => {
-        res.status(201).send({createdAccountUID: accCreationReq.createdAccountUID});
-    }).catch(err => res.send(500).send({errorMessage:'Failed to create account due following issue: ' + err}));
+    accountService.createAccount(nickname, email, avatar, age).accountCreationPromise
+    .then(result => {res.status(201).send({createdAccountUID: accCreationReq.createdAccountUID});})
+    .catch(err => res.send(500).send({
+        errorMessage:'Failed to create account due following issue: ' + err
+    }));
 });
 
-router.put("/accounts/:UUID", (req, res) => {
-    let updateReq = accountService.updateAccountById(req.params.UUID, req.body);
-    updateReq.then(result => res.status(204).send({message:'Account successfully updated'}))
-    .catch(err => res.status(500).send({errorMessage:'Failed to update account due following issue: ' + err}));
+router.put("/accounts/:UID", (req, res) => {
+    accountService.updateAccountById(req.params.UID, req.body)
+    .then(result => res.status(204).send())
+    .catch(err => res.status(500).send({
+        errorMessage:'Failed to update account due following issue: ' + err
+    }));
 });
 
-router.patch("/accounts/:UUID", (req, res) => {
-    let patchReq = accountService.partiallyUpdateAccountById(req.params.UUID, req.body);
-    patchReq.then(() => res.status(204).send({message:'Account successfully updated'}))
-    .catch(err => res.status(500).send({errorMessage:'Failed to update account due following issue: ' + err}))
+router.patch("/accounts/:UID", (req, res) => {
+    accountService.partiallyUpdateAccountById(req.params.UID, req.body)
+    .then(() => res.status(204).send())
+    .catch(err => res.status(500).send({
+        errorMessage:'Failed to update account due following issue: ' + err
+    }));
 });
 
 module.exports = router;
