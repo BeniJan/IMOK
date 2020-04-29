@@ -9,8 +9,9 @@
 *Rafael Pak*
 
 # Build Project
-Create a .env file inside backend folder and declare your firebase api key (that can be found in your firebase console) inside it as follows:
+Create a .env file inside backend folder and declare your firebase api key (that can be found in your firebase console) and the local hosting port inside it as follows:
 *FIREBASE_API_KEY={your_api_key}*
+*PORT=5000*
 
 Then run a initialization npm command with admin permission inside backend folder:
 *npm init*
