@@ -50,11 +50,12 @@ router.delete("/accounts/:UID", (req, res) => {
 
 router.post("/accounts", (req, res) => {
     let {nickname, email, avatar, age} = req.body;
-    accountService.createAccount(nickname, email, avatar, age).accountCreationPromise
+    let accCreationReq = accountService.createAccount(nickname, email, avatar, age);
+    accCreationReq.accountCreationPromise
     .then(result => {res.status(201).send({createdAccountUID: accCreationReq.createdAccountUID});})
-    .catch(err => res.send(500).send({
+    .catch(err => res.status(500).send({
         errorMessage:'Failed to create account due following issue: ' + err
-    }));
+    }).end());
 });
 
 router.post("/accounts/:UID/block", (req, res) => {
