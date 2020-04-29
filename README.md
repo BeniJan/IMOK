@@ -21,3 +21,6 @@ You can run the server locally by accessing backend folder in the terminal and r
 
 Postman endpoints collection can be imported by using the link bellow:
 *https://www.getpostman.com/collections/21ba29a6d9597da78197*
+
+Heroku host:
+*https://imok-express.herokuapp.com/*
