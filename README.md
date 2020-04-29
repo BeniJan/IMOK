@@ -17,10 +17,10 @@ Then run a initialization npm command with admin permission inside backend folde
 *npm init*
 
 You can run the server locally by accessing backend folder in the terminal and running the application entry point using node:
-**node main.js**
+*node main.js*
 
-Postman endpoints collection can be imported by using the link bellow:
+**Postman**
+endpoints collection can be imported by using the link bellow:
 *https://www.getpostman.com/collections/21ba29a6d9597da78197*
 
-Heroku host:
-*https://imok-express.herokuapp.com/*
+environments containing LOCAL and PROD hosts can be found at projects folder *'./postman_resources'*
