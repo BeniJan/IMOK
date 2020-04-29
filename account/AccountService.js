@@ -17,10 +17,16 @@ let accountService = class {
     createAccount = (nickname, email, avatar, age) => {
         let accountUID = this.db.collection('accounts').doc().id;
         return {
-            accountCreationPromise: this.db.collection('accounts').doc(accountUID).set({ nickname, email, avatar, age }),
+            accountCreationPromise: this.db.collection('accounts').doc(accountUID).set({
+                nickname,
+                email,
+                avatar,
+                age,
+                isBlocked: false
+            }),
             createdAccountUID: accountUID
         }
-    }
+    };
 
     blockUser = UID => this.db.collection('accounts').doc(UID).set({isBlocked: true}, {merge: true});
 
@@ -28,9 +34,9 @@ let accountService = class {
     
     updateAccountById = (UID, {nickname, email, avatar, age}) => this.db.collection('accounts').doc(UID).set({
         nickname, email, avatar, age
-    })
+    }, {merge: true});
 
-    partiallyUpdateAccountById = (UID, reqBody) => this.db.collection('accounts').doc(UID).set(reqBody, {merge: true})
+    partiallyUpdateAccountById = (UID, reqBody) => this.db.collection('accounts').doc(UID).set(reqBody, {merge: true});
 }
     
 
