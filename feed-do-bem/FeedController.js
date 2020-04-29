@@ -10,7 +10,9 @@ router.get('/posts/:UID', (req, res) => {
         if (user.data() === undefined) {
             res.status(404).send({errorMessage: 'Couldn\'t find such post in firestore.'});
         }
-        res.status(200).send(user.data());
+        let data = user.data();
+        data.id = user.id;
+        res.status(200).send(data);
     }).catch(err => res.status(500).send({
             errorMessage: 'Failed to fetch post info duo following issue: ' + err
     }));
@@ -25,8 +27,11 @@ router.get('/posts', (req, res) => {
     } else getReq = feedService.getAllPosts();
 
     getReq.then(collection => {
-        console.log(collection.docs.map(doc => doc.data()))
-        res.status(200).send(collection.docs.map(doc => doc.data()));
+        res.status(200).send(collection.docs.map(doc => {
+            let data = doc.data();
+            data.id = doc.id;
+            return data;
+        }));
     }).catch(err => res.status(500).send(
         {errorMessage: 'Couldn\'t fetch posts due following issue: ' + err}
     ));

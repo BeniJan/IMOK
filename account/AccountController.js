@@ -9,7 +9,9 @@ router.get("/accounts/:UID", (req, res) => {
         if (user.data() === undefined) {
             res.status(404).send({errorMessage: 'Couldn\'t find such users in firestore.'});
         }
-        res.status(200).send(user.data());
+        let data = user.data();
+        data.id = user.id;
+        res.status(200).send(data);
     }).catch(err => res.status(500).send({
         errorMessage: 'Failed to fetch user info duo following issue: ' + err
     }));
@@ -29,7 +31,11 @@ router.get("/accounts", (req, res) => {
         if (snapshot.empty) {
             res.status(404).send({errorMessage: 'Couldn\'t find such users in firestore.'});
         }
-        snapshot.forEach(user => res.status(200).send(user.data()))
+        snapshot.forEach(user => {
+            let data = user.data();
+            data.id = user.id;
+            res.status(200).send(data);
+        })
     })
     .catch(err => res.status(500).send({errorMessage: 'Failed to fetch user info duo following issue: ' + err}));
 });
