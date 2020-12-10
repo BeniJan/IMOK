@@ -10,22 +10,22 @@ export default function Feed () {
   const goodNews = [
   {
     id: '1',
-    title: 'Fotos adoráveis de bebês animais com seus pais',
+    title: 'Fotos adorÃ¡veis de bebÃªs animais com seus pais',
     img: 'https://www.sticky.digital/wp-content/uploads/2013/11/img-6.jpg'
   },
   {
     id: '2',
-    title: '5 boas notícias da ciência sobre o coronavírus',
+    title: '5 boas notÃ­cias da ciÃªncia sobre o coronavÃ­rus',
     img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQB8O1ZA6phGwj5Ao-g0VYT_6VXO8NuTQaO89kjm38x_T3EOEqG&usqp=CAU' 
   },
   {
     id: '3',
-    title: 'Animais de abrigos estão sendo adotados aos montes durante a quarentena',
+    title: 'Animais de abrigos estÃ£o sendo adotados aos montes durante a quarentena',
     img: 'https://christmasfantasy.gr/wp-content/uploads/blog-img-link.jpg'
   },
    {
     id: '1',
-    title: 'Caminhoneiros estão recebendo almoço',
+    title: 'Caminhoneiros estÃ£o recebendo almoÃ§o',
     img: 'https://www.sticky.digital/wp-content/uploads/2013/11/img-6.jpg'
   },
   {
@@ -104,4 +104,4 @@ const styles = StyleSheet.create ({
         borderRadius: 7,
         opacity: .4
     }
-});
+})
